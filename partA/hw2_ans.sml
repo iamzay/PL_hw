@@ -113,15 +113,3 @@ fun officiate (cs:card list,moves: move list,goal:int) =
   in
       helper(cs,[],moves)
   end
-
-fun careful_player(cs:card list, goal:int) = (* -> move list *)
-  let fun helper(cs:card list, held:card list,moves:move list) =
-        let val sum=sum_cards(held)
-            val c::cs'=cs
-        in
-        if sum=0
-        then moves
-        else if goal>10+sum_cards(held)
-        then helper(cs',c::held,moves@[Draw])
-        else (* 可以弃牌和摸牌，先判断是否可以通过弃牌再摸牌得到0分，若是则这样做，否则弃牌or摸牌？  *)
-            let fun can

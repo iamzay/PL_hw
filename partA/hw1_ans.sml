@@ -1,10 +1,21 @@
+// this is an wrong answer
 fun is_older (date1:(int*int*int),date2:(int*int*int)) =
   let fun get_days(date:(int*int*int))=
         365*(#1 date)+30*(#2 date)+(#3 date)
   in
-      if get_days date1 < get_days date2
-      then true
-      else false
+      get_days date1 < get_days date2
+  end
+
+fun is_older (date1:(int*int*int),date2:(int*int*int)) =
+  let
+      val y1=#1 date1
+      val y2=#1 date2
+      val m1=#2 date1
+      val m2=#2 date2
+      val d1=#3 date1
+      val d2=#3 date2
+  in
+      y1<y2 orelse (y1=y2 andalso m1<m2) orelse (y1=y2 andalso m1=m2 andalso d1<d2)
   end
 
 fun number_in_month (dates:(int*int*int) list,month:int) =
